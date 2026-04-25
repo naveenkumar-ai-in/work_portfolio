@@ -613,15 +613,35 @@
     ════════════════════════════════════════ */
     #projects { background: var(--bg); }
 
+    /* horizontal scroll track */
+    .projects-scroll-wrap {
+      margin-top: 48px;
+      overflow-x: auto;
+      overflow-y: visible;
+      padding-bottom: 16px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--indigo3) transparent;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .projects-scroll-wrap:active { cursor: grabbing; }
+
+    .projects-scroll-wrap::-webkit-scrollbar { height: 4px; }
+    .projects-scroll-wrap::-webkit-scrollbar-track { background: transparent; }
+    .projects-scroll-wrap::-webkit-scrollbar-thumb { background: var(--indigo3); border-radius: 4px; }
+
+    /* two-row grid inside the scroll track */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-top: 56px;
+      grid-template-columns: repeat(4, 260px);
+      grid-template-rows: auto auto;
+      gap: 14px;
+      width: max-content;
     }
 
     .project-card {
-      padding: 28px;
+      padding: 20px;
       background: var(--glass);
       border: 1px solid var(--border);
       border-radius: var(--r-lg);
@@ -629,16 +649,16 @@
       -webkit-backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 10px;
       transition: border-color 0.3s, transform 0.3s, background 0.3s, box-shadow 0.3s;
       cursor: default;
     }
 
     .project-card:hover {
       border-color: rgba(99,102,241,0.3);
-      transform: translateY(-6px);
+      transform: translateY(-4px);
       background: rgba(99,102,241,0.04);
-      box-shadow: 0 20px 48px rgba(0,0,0,0.3);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
     }
 
     .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); }
@@ -650,18 +670,18 @@
     }
 
     .project-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 18px;
     }
 
     .project-arrow {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       border: 1px solid var(--border);
       display: flex;
@@ -675,7 +695,7 @@
 
     .project-name {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 700;
       color: var(--text1);
     }
@@ -1314,12 +1334,7 @@
     /* ════════════════════════════════════════
        MOBILE RESPONSIVE
     ════════════════════════════════════════ */
-    @media (max-width: 1200px) {
-      .projects-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
     @media (max-width: 1024px) {
-      .projects-grid { grid-template-columns: repeat(2, 1fr); }
       .certs-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
@@ -1817,6 +1832,7 @@
         <h2 class="section-title">Products & Projects</h2>
       </div>
 
+      <div class="projects-scroll-wrap" id="projects-scroll">
       <div class="projects-grid">
 
         <!-- 1: BBPS -->
@@ -1984,7 +2000,8 @@
           </div>
         </div>
 
-      </div>
+      </div><!-- /projects-grid -->
+      </div><!-- /projects-scroll-wrap -->
     </div>
   </section>
 
@@ -2217,7 +2234,7 @@
               <div class="cert-name">Managing Big Data with SQL</div>
               <div class="cert-issuer">Duke University · 2016</div>
             </div>
-            <a href="#" class="cert-link">
+            <a href="https://www.coursera.org/account/accomplishments/verify/XQSLUV2UCYGK" target="_blank" class="cert-link">
               View PDF
               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
@@ -2229,7 +2246,7 @@
               <div class="cert-name">Introduction to Financial Accounting</div>
               <div class="cert-issuer">Wharton Business School · 2016</div>
             </div>
-            <a href="#" class="cert-link">
+            <a href="https://www.coursera.org/account/accomplishments/verify/UT5G2LYEN9HT" target="_blank" class="cert-link">
               View PDF
               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
@@ -2241,10 +2258,6 @@
               <div class="cert-name">Green Belt – Lean Six Sigma</div>
               <div class="cert-issuer">KPMG · 2017 · ID: DL072017739</div>
             </div>
-            <a href="#" class="cert-link">
-              View PDF
-              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </a>
           </div>
 
           <div class="cert-card">
@@ -2253,7 +2266,7 @@
               <div class="cert-name">Machine Learning</div>
               <div class="cert-issuer">Coursera · 2020</div>
             </div>
-            <a href="#" class="cert-link">
+            <a href="https://www.coursera.org/account/accomplishments/verify/Q5DY58RHBCSZ" target="_blank" class="cert-link">
               View PDF
               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
@@ -2265,7 +2278,7 @@
               <div class="cert-name">Digital Transformation</div>
               <div class="cert-issuer">BCG · 2020</div>
             </div>
-            <a href="#" class="cert-link">
+            <a href="https://www.coursera.org/account/accomplishments/verify/PTGN2VPWSCEL" target="_blank" class="cert-link">
               View PDF
               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
@@ -2277,7 +2290,7 @@
               <div class="cert-name">Complete Python Bootcamp</div>
               <div class="cert-issuer">Udemy · 2020</div>
             </div>
-            <a href="#" class="cert-link">
+            <a href="https://www.udemy.com/certificate/UC-808ae83b-32a0-417d-9d0a-929ddd53274a/" target="_blank" class="cert-link">
               View PDF
               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
@@ -2447,6 +2460,27 @@
       const mailtoLink = `mailto:naveen.mandolia@gmail.com?subject=${encodeURIComponent(subject || 'Portfolio Enquiry')}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
       window.location.href = mailtoLink;
     }
+
+    // ─── DRAG-TO-SCROLL (Projects) ───
+    (function() {
+      const slider = document.getElementById('projects-scroll');
+      if (!slider) return;
+      let isDown = false, startX, scrollLeft;
+      slider.addEventListener('mousedown', e => {
+        isDown = true;
+        slider.style.cursor = 'grabbing';
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+      slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'grab'; });
+      slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; });
+      slider.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        slider.scrollLeft = scrollLeft - (x - startX) * 1.4;
+      });
+    })();
 
     // ─── SMOOTH SCROLL FOR NAV LINKS ───
     document.querySelectorAll('a[href^="#"]').forEach(a => {
