@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naveen Kumar — Product Leader</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f8f9fb;
+      --border: #e8eaed;
+      --text-primary: #111318;
+      --text-secondary: #5a6373;
+      --text-muted: #9aa3af;
+      --accent: #2563eb;
+      --accent-light: #eff4ff;
+      --accent-mid: #bfdbfe;
+      --green: #059669;
+      --green-light: #ecfdf5;
+      --amber: #d97706;
+      --amber-light: #fffbeb;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,.10);
+      --nav-h: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 32px;
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo { font-weight: 700; font-size: 1.05rem; letter-spacing: -.3px; color: var(--text-primary); text-decoration: none; }
+    .nav-links { display: flex; gap: 8px; }
+    .nav-links a {
+      text-decoration: none; font-size: .875rem; font-weight: 500; color: var(--text-secondary);
+      padding: 6px 14px; border-radius: 100px; transition: color .18s, background .18s;
+    }
+    .nav-links a:hover { color: var(--text-primary); background: var(--surface); }
+    .nav-cta {
+      background: var(--accent) !important; color: #fff !important;
+      padding: 7px 18px !important;
+    }
+    .nav-cta:hover { background: #1d4ed8 !important; }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 32px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ── HERO ── */
+    #hero {
+      padding-top: calc(var(--nav-h) + 80px);
+      padding-bottom: 100px;
+      background: linear-gradient(160deg, #f0f5ff 0%, #ffffff 55%);
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 420px; gap: 64px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-light); border: 1px solid var(--accent-mid);
+      color: var(--accent); font-size: .78rem; font-weight: 600; letter-spacing: .4px;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 700; line-height: 1.15; letter-spacing: -.5px;
+      color: var(--text-primary); margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-size: 1.08rem; color: var(--text-secondary); line-height: 1.7;
+      max-width: 520px; margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: var(--radius-sm); font-size: .9rem;
+      font-weight: 600; text-decoration: none; cursor: pointer; border: none;
+      transition: all .2s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(37,99,235,.25); }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,99,235,.32); }
+    .btn-outline { background: transparent; color: var(--text-primary); border: 1.5px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+    /* stat panel */
+    .hero-stats {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow-md);
+    }
+    .stat-title { font-size: .78rem; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .stat-item {}
+    .stat-val { font-size: 1.7rem; font-weight: 700; color: var(--text-primary); line-height: 1; margin-bottom: 4px; }
+    .stat-val span { font-size: 1rem; color: var(--accent); }
+    .stat-label { font-size: .78rem; color: var(--text-muted); line-height: 1.35; }
+    .stat-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+    .stat-footer { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--text-secondary); }
+    .stat-pill {
+      background: var(--green-light); color: var(--green); font-size: .72rem;
+      font-weight: 600; padding: 3px 10px; border-radius: 100px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700; letter-spacing: -.3px; color: var(--text-primary); margin-bottom: 12px;
+    }
+    .section-desc { font-size: 1rem; color: var(--text-secondary); max-width: 560px; line-height: 1.7; margin-bottom: 48px; }
+
+    /* ── ACHIEVEMENTS ── */
+    #achievements { background: var(--surface); }
+    .achieve-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    .achieve-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 24px 20px;
+      box-shadow: var(--shadow-sm); transition: box-shadow .2s, transform .2s;
+    }
+    .achieve-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .achieve-icon { font-size: 1.5rem; margin-bottom: 14px; }
+    .achieve-metric { font-size: 2rem; font-weight: 800; color: var(--text-primary); line-height: 1; margin-bottom: 6px; letter-spacing: -1px; }
+    .achieve-metric .unit { font-size: 1rem; font-weight: 600; color: var(--accent); }
+    .achieve-label { font-size: .82rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
+    .achieve-desc { font-size: .78rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── EXPERIENCE ── */
+    #experience {}
+    .exp-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; }
+    .exp-nav { position: sticky; top: calc(var(--nav-h) + 24px); align-self: start; }
+    .exp-nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; border-radius: var(--radius-sm); margin-bottom: 4px;
+      cursor: pointer; text-decoration: none; color: var(--text-secondary);
+      font-size: .875rem; font-weight: 500; transition: all .18s;
+      border-left: 2px solid transparent;
+    }
+    .exp-nav-item:hover, .exp-nav-item.active {
+      color: var(--accent); background: var(--accent-light);
+      border-left-color: var(--accent);
+    }
+    .exp-nav-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
+    .exp-entries { display: flex; flex-direction: column; gap: 36px; }
+    .exp-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 32px;
+      box-shadow: var(--shadow-sm); position: relative;
+      border-left: 3px solid var(--border); transition: border-color .2s;
+    }
+    .exp-card:hover { border-left-color: var(--accent); box-shadow: var(--shadow-md); }
+    .exp-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 4px; }
+    .exp-role { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
+    .exp-period {
+      font-size: .78rem; font-weight: 600; color: var(--accent);
+      background: var(--accent-light); padding: 4px 12px; border-radius: 100px; white-space: nowrap;
+    }
+    .exp-company { font-size: .9rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 16px; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .exp-bullets li {
+      font-size: .875rem; color: var(--text-secondary); line-height: 1.6;
+      padding-left: 18px; position: relative;
+    }
+    .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: .8rem; top: 2px; }
+    .exp-bullets li strong { color: var(--text-primary); }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .exp-tag {
+      font-size: .72rem; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+      background: var(--surface); color: var(--text-secondary); border: 1px solid var(--border);
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--surface); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .about-text p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; font-size: .95rem; }
+    .edu-cards { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+    .edu-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 16px 20px;
+      display: flex; gap: 16px; align-items: center;
+    }
+    .edu-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .edu-deg { font-size: .9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
+    .edu-inst { font-size: .8rem; color: var(--text-muted); }
+
+    .skills-section {}
+    .skill-group { margin-bottom: 24px; }
+    .skill-group-title { font-size: .78rem; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-chip {
+      font-size: .8rem; font-weight: 500; padding: 6px 14px;
+      border-radius: 100px; border: 1.5px solid var(--border);
+      color: var(--text-secondary); background: var(--bg); transition: all .18s;
+    }
+    .skill-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+    .skill-chip.featured { background: var(--accent-light); border-color: var(--accent-mid); color: var(--accent); }
+
+    .interests { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    .interest {
+      display: flex; align-items: center; gap: 7px;
+      font-size: .82rem; color: var(--text-secondary);
+      background: var(--bg); border: 1px solid var(--border);
+      padding: 6px 14px; border-radius: 100px;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--text-primary); }
+    #contact .section-label { color: #93c5fd; }
+    #contact .section-title { color: #ffffff; }
+    #contact .section-desc { color: #94a3b8; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 20px; background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-sm);
+      text-decoration: none; color: #e2e8f0; font-size: .9rem;
+      transition: all .18s;
+    }
+    .contact-link:hover { background: rgba(37,99,235,.25); border-color: rgba(37,99,235,.5); color: #fff; }
+    .contact-link-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .contact-link-label { font-size: .7rem; text-transform: uppercase; letter-spacing: .6px; color: #64748b; }
+    .contact-link-val { font-size: .9rem; font-weight: 500; }
+
+    .contact-cta {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius); padding: 32px;
+    }
+    .contact-cta h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .contact-cta p { font-size: .875rem; color: #94a3b8; line-height: 1.7; margin-bottom: 24px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 24px 32px;
+      background: #0a0f1a; color: #475569; font-size: .8rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-stats { max-width: 440px; }
+      .exp-layout { grid-template-columns: 1fr; }
+      .exp-nav { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 72px 20px; }
+      .nav-inner { padding: 0 20px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Naveen Kumar</a>
+    <div class="nav-links">
+      <a href="#achievements">Impact</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Open to opportunities
+        </div>
+        <h1>Building fintech products that move money & millions.</h1>
+        <p class="hero-sub">
+          Product Leader with 5+ years scaling fintech platforms across payments and credit.
+          Currently leading Payments at Paisabazaar — driving strategy across BBPS, Mobile Recharges,
+          and Wallet. Proven track record of 0→1 launches and 1→N growth.
+        </p>
+        <div class="hero-actions">
+          <a href="#experience" class="btn btn-primary">View My Work ↓</a>
+          <a href="mailto:naveen.mandolia@gmail.com" class="btn btn-outline">📩 Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-title">Career Highlights</div>
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-val">5<span>M+</span></div>
+            <div class="stat-label">Monthly Active Users on Credit Score Platform</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">₹18<span>Cr+</span></div>
+            <div class="stat-label">ARR delivered via subscription product</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">300<span>%</span></div>
+            <div class="stat-label">YoY MAU growth via WhatsApp for Business</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">₹100<span>Cr+</span></div>
+            <div class="stat-label">Monthly payments value run rate (BBPS)</div>
+          </div>
+        </div>
+        <hr class="stat-divider" />
+        <div class="stat-footer">
+          <span>📍 Delhi NCR</span>
+          &nbsp;·&nbsp;
+          <span>5+ Years Experience</span>
+          &nbsp;·&nbsp;
+          <span class="stat-pill">Fintech</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ACHIEVEMENTS ═══════════ -->
+<section id="achievements">
+  <div class="container">
+    <div class="section-label">Measurable Impact</div>
+    <div class="section-title">Numbers that matter</div>
+    <p class="section-desc">Every initiative is tied to outcomes. Here's a snapshot of the impact I've driven across product, revenue, and retention.</p>
+    <div class="achieve-grid">
+      <div class="achieve-card">
+        <div class="achieve-icon">📈</div>
+        <div class="achieve-metric">5M<span class="unit">+ MAU</span></div>
+        <div class="achieve-label">Credit Score Platform Growth</div>
+        <div class="achieve-desc">Scaled from 1M to 5M+ monthly active users; owned P&L and platform KPIs across acquisition, retention & cross-sell.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">💳</div>
+        <div class="achieve-metric">₹18Cr<span class="unit">+ ARR</span></div>
+        <div class="achieve-label">Subscription Product Revenue</div>
+        <div class="achieve-desc">Built & scaled AI-based Credit Score monitoring subscription — 60K new + 84K renewal transactions monthly.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">💸</div>
+        <div class="achieve-metric">₹100Cr<span class="unit">+/mo</span></div>
+        <div class="achieve-label">Payments Value Run Rate</div>
+        <div class="achieve-desc">Led BBPS & Mobile Prepaid products to 40K monthly transactions with 80% MoM retention.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">📱</div>
+        <div class="achieve-metric">300<span class="unit">% YoY</span></div>
+        <div class="achieve-label">MAU Growth via WhatsApp</div>
+        <div class="achieve-desc">Led WhatsApp for Business integration as a primary engagement channel, delivering 15% direct revenue uplift.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">🏦</div>
+        <div class="achieve-metric">₹72Cr<span class="unit">+ saved</span></div>
+        <div class="achieve-label">Procurement Cost Savings</div>
+        <div class="achieve-desc">Implemented TCO model across 6+ categories for a manufacturing client at EY Parthenon.</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">🤖</div>
+        <div class="achieve-metric">2X<span class="unit"> MoM</span></div>
+        <div class="achieve-label">Wallet Retention</div>
+        <div class="achieve-desc">Built PB Wallet (closed-loop non-PPI) to ₹50L+ monthly transaction volume with 2× MoM user retention.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EXPERIENCE ═══════════ -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Career Journey</div>
+    <div class="section-title">Experience</div>
+    <p class="section-desc">From strategy consulting to fintech product leadership — a decade of solving hard problems.</p>
+    <div class="exp-layout">
+      <div class="exp-nav">
+        <div class="section-label" style="margin-bottom:16px">Jump to role</div>
+        <a href="#role-pb2" class="exp-nav-item active"><span class="exp-nav-dot"></span>Product Lead, Payments</a>
+        <a href="#role-pb1" class="exp-nav-item"><span class="exp-nav-dot"></span>Sr. PM, Credit Score</a>
+        <a href="#role-ey" class="exp-nav-item"><span class="exp-nav-dot"></span>EY Parthenon</a>
+        <a href="#role-eval" class="exp-nav-item"><span class="exp-nav-dot"></span>Evalueserve</a>
+      </div>
+
+      <div class="exp-entries">
+
+        <!-- Role 1 -->
+        <div class="exp-card" id="role-pb2">
+          <div class="exp-card-header">
+            <div class="exp-role">Product Lead, Payments</div>
+            <div class="exp-period">Apr 2025 – Present</div>
+          </div>
+          <div class="exp-company">Paisabazaar.com · Full-time</div>
+          <ul class="exp-bullets">
+            <li>Led product vision, roadmap and integration of <strong>BBPS & Mobile Prepaid</strong>; scaled to <strong>40K monthly transactions</strong> and INR 100Cr.+ monthly value run rate with 80% MoM retention.</li>
+            <li>Led <strong>payment gateway integrations</strong> (RazorPay, PayU, CashFree) for Bill Payments & Bonds on App & Web; built reconciliation and settlement dashboards using Agentic AI.</li>
+            <li>Led product strategy for <strong>PB Wallet</strong>, a closed-loop non-PPI wallet; scaled to ₹50L+ monthly transaction volume with 2× MoM retention.</li>
+            <li>Built <strong>PB Protect+</strong>, an AI-based email parsing engine to extract & analyze credit card statements — surfacing spend insights, hidden fees & late charges.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">BBPS</span><span class="exp-tag">Payments</span><span class="exp-tag">Agentic AI</span><span class="exp-tag">Fintech</span><span class="exp-tag">RazorPay</span><span class="exp-tag">Wallet</span>
+          </div>
+        </div>
+
+        <!-- Role 2 -->
+        <div class="exp-card" id="role-pb1">
+          <div class="exp-card-header">
+            <div class="exp-role">Senior Product Manager, Credit Score Platform</div>
+            <div class="exp-period">Jul 2021 – Mar 2025</div>
+          </div>
+          <div class="exp-company">Paisabazaar.com · Full-time</div>
+          <ul class="exp-bullets">
+            <li>Scaled Credit Score platform from <strong>1M → 5M+ MAUs</strong>, driving ~25% of total company revenue; owned full P&L and platform KPIs.</li>
+            <li>Built <strong>pbRewards</strong> loyalty program integrating third-party platforms (Gyftr, dpanda); drove ~8% annualized increase in credit card issuances.</li>
+            <li>Built & scaled AI-based <strong>subscription Credit Score monitoring</strong> product — 150K monthly transactions, delivering <strong>INR 18Cr+ ARR</strong>.</li>
+            <li>Delivered <strong>25% lift in MAUs</strong> by shipping features across 4 Credit Bureaus: Real-time Alerts, ML-based Score Simulator, CCR, and dispute workflows.</li>
+            <li>Led <strong>WhatsApp for Business</strong> integration as primary engagement channel — 300% YoY MAU growth, 15% revenue uplift.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Credit Bureau</span><span class="exp-tag">ML/AI</span><span class="exp-tag">WhatsApp API</span><span class="exp-tag">Subscriptions</span><span class="exp-tag">Loyalty</span><span class="exp-tag">P&L Ownership</span>
+          </div>
+        </div>
+
+        <!-- Role 3 -->
+        <div class="exp-card" id="role-ey">
+          <div class="exp-card-header">
+            <div class="exp-role">Strategy Consultant</div>
+            <div class="exp-period">Jul 2019 – Apr 2021</div>
+          </div>
+          <div class="exp-company">EY Parthenon · Full-time</div>
+          <ul class="exp-bullets">
+            <li>Drove end-to-end execution of an <strong>M&A transaction</strong> integrating OEM & agency channels (Motor insurance) — improved premium margins and market share.</li>
+            <li>Singlehandedly implemented a <strong>Total Cost of Ownership (TCO)</strong> procurement model across 6+ categories; delivered <strong>INR 72Cr+ in annualized cost savings</strong>.</li>
+            <li>Led design of Finance & Procurement operating model for a <strong>global FMCG client</strong>; synthesized EY WaveSpace™ session insights into a strategic roadmap for ~8% cost savings; presented to Global CFO.</li>
+            <li>Selected from 60 campus recruits to work directly with <strong>CEO in EY India Strategy Office</strong>; built Power BI dashboards for org-wide visibility.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">M&A</span><span class="exp-tag">Strategy</span><span class="exp-tag">Procurement</span><span class="exp-tag">Power BI</span><span class="exp-tag">FMCG</span><span class="exp-tag">Insurance</span>
+          </div>
+        </div>
+
+        <!-- Role 4 -->
+        <div class="exp-card" id="role-eval">
+          <div class="exp-card-header">
+            <div class="exp-role">Data Analyst</div>
+            <div class="exp-period">Jul 2014 – Jun 2015</div>
+          </div>
+          <div class="exp-company">Evalueserve · Full-time</div>
+          <ul class="exp-bullets">
+            <li>Conducted data analysis for a <strong>UK telecom major</strong> on multi-channel acquisition & retention marketing campaigns; achieved <strong>20% efficiency improvement</strong> in campaign execution.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Data Analysis</span><span class="exp-tag">Telecom</span><span class="exp-tag">Marketing Analytics</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Background & Skills</div>
+    <div class="section-title">About Me</div>
+    <div class="about-grid">
+      <div>
+        <div class="about-text">
+          <p>I'm a product leader who sits at the intersection of <strong>technology, data, and business strategy</strong>. With a foundation in Computer Engineering and an MBA from FMS Delhi, I bring both technical depth and strategic clarity to every product I build.</p>
+          <p>My journey has taken me from data analytics and strategy consulting to building some of India's most-used fintech platforms. I'm passionate about <strong>0→1 product thinking</strong>, AI-powered experiences, and using data to drive decisions that matter.</p>
+          <p>Outside of work, I enjoy long-distance running, playing badminton, and reading — always looking for the next great idea whether on the road or in a book.</p>
+        </div>
+        <div class="edu-cards">
+          <div class="edu-card">
+            <div class="edu-icon">🏛️</div>
+            <div>
+              <div class="edu-deg">MBA — Finance & Strategy</div>
+              <div class="edu-inst">Faculty of Management Studies (FMS), Delhi · 2017–2019</div>
+            </div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-icon">💻</div>
+            <div>
+              <div class="edu-deg">B.E. — Computer Engineering</div>
+              <div class="edu-inst">NSIT, Delhi · 2010–2014</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-section">
+        <div class="skill-group">
+          <div class="skill-group-title">Product & Design</div>
+          <div class="skill-chips">
+            <span class="skill-chip featured">Figma</span>
+            <span class="skill-chip featured">JIRA</span>
+            <span class="skill-chip">A/B Testing</span>
+            <span class="skill-chip">Google Analytics</span>
+            <span class="skill-chip">Postman</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Data & Engineering</div>
+          <div class="skill-chips">
+            <span class="skill-chip featured">SQL</span>
+            <span class="skill-chip featured">Python</span>
+            <span class="skill-chip">HIVE</span>
+            <span class="skill-chip">Power BI</span>
+            <span class="skill-chip">Data Structures</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">AI & Modern Stack</div>
+          <div class="skill-chips">
+            <span class="skill-chip featured">Gen AI</span>
+            <span class="skill-chip featured">ML/AI Systems</span>
+            <span class="skill-chip featured">RAG</span>
+            <span class="skill-chip featured">MCP</span>
+            <span class="skill-chip">Agentic AI</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Domain Expertise</div>
+          <div class="skill-chips">
+            <span class="skill-chip">Payments (BBPS)</span>
+            <span class="skill-chip">Credit Platforms</span>
+            <span class="skill-chip">Fintech</span>
+            <span class="skill-chip">Strategy & M&A</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Interests</div>
+          <div class="interests">
+            <span class="interest">🏃 Long Distance Running</span>
+            <span class="interest">🏸 Badminton</span>
+            <span class="interest">📚 Book Reading</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Let's Connect</div>
+    <div class="section-title" style="color:#fff">Open to conversations</div>
+    <p class="section-desc">Whether it's a product role, a startup idea, or just a chat about fintech and AI — I'd love to hear from you.</p>
+    <div class="contact-grid">
+      <div class="contact-links">
+        <a href="mailto:naveen.mandolia@gmail.com" class="contact-link">
+          <span class="contact-link-icon">📧</span>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-val">naveen.mandolia@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+919810431567" class="contact-link">
+          <span class="contact-link-icon">📱</span>
+          <div>
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-val">+91 98104 31567</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/naveen-mandolia" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-link-icon">💼</span>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-val">linkedin.com/in/naveen-mandolia</div>
+          </div>
+        </a>
+        <div class="contact-link" style="opacity:.6; cursor:default;">
+          <span class="contact-link-icon">📍</span>
+          <div>
+            <div class="contact-link-label">Location</div>
+            <div class="contact-link-val">Delhi NCR, India</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-cta">
+        <h3>Looking for a product leader?</h3>
+        <p>I bring 5+ years of fintech product experience, a strong data-driven mindset, and a track record of building and scaling platforms from 0→1 and beyond. Let's build something great together.</p>
+        <a href="mailto:naveen.mandolia@gmail.com" class="btn btn-primary" style="width:100%; justify-content:center;">
+          Send me a message →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <p>© 2026 Naveen Kumar · Product Leader in Fintech · Delhi NCR, India</p>
+</footer>
+
+<script>
+  // Active nav link on scroll
+  const navItems = document.querySelectorAll('.exp-nav-item');
+  const roles = document.querySelectorAll('.exp-card[id]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navItems.forEach(n => n.classList.remove('active'));
+        const match = document.querySelector(`.exp-nav-item[href="#${e.target.id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  roles.forEach(r => observer.observe(r));
+
+  // Animate numbers on scroll
+  const counters = document.querySelectorAll('.achieve-metric');
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.2 });
+  counters.forEach(c => {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(12px)';
+    c.style.transition = 'opacity .5s ease, transform .5s ease';
+    counterObserver.observe(c);
+  });
+</script>
+</body>
+</html>
